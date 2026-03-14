@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Member Evaluation — Daniel Ortiz</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: #f5f5f0; color: #1a1a1a; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    .report { max-width: 760px; margin: 0 auto; background: #ffffff; }
+    .header { background: #c41230; padding: 44px 40px 36px; position: relative; overflow: hidden; }
+    .header::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(135deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.12) 100%); }
+    .header-inner { position: relative; z-index: 1; }
+    .header-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; }
+    .brand { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.8); letter-spacing: 1.8px; text-transform: uppercase; }
+    .period-badge { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22); border-radius: 6px; padding: 5px 14px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.88); }
+    .header h1 { font-size: 30px; font-weight: 700; color: #fff; letter-spacing: -0.4px; margin-bottom: 2px; }
+    .header-sub { font-size: 14px; color: rgba(255,255,255,0.7); }
+    .info-bar { display: flex; border-bottom: 1px solid #eae9e5; }
+    .grade-box { width: 150px; min-width: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px 20px; border-right: 1px solid #eae9e5; }
+    .grade-letter { font-size: 52px; font-weight: 700; line-height: 1; letter-spacing: -2px; }
+    .grade-num { font-size: 15px; font-weight: 500; color: #999; margin-top: 5px; }
+    .grade-tag { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.4px; color: #bbb; margin-top: 7px; }
+    .info-details { flex: 1; padding: 24px 32px; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+    .info-row { display: flex; gap: 36px; }
+    .info-item label { display: block; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #aaa; margin-bottom: 2px; }
+    .info-item span { font-size: 14px; font-weight: 500; color: #333; }
+    .section { padding: 34px 40px; border-bottom: 1px solid #eae9e5; }
+    .section:last-child { border-bottom: none; }
+    .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.8px; color: #c41230; margin-bottom: 18px; }
+    .methodology { background: #fafaf7; }
+    .method-intro { margin-bottom: 28px; }
+    .method-intro p { font-size: 15px; line-height: 1.7; color: #444; }
+    .method-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .method-card { background: #fff; border: 1px solid #eae9e5; border-radius: 8px; padding: 20px; }
+    .method-card-title { font-size: 14px; font-weight: 700; color: #c41230; margin-bottom: 12px; }
+    .method-formula { background: #f5f5f0; border-left: 3px solid #c41230; padding: 10px 14px; font-family: 'Courier New', monospace; font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 12px; border-radius: 4px; }
+    .method-desc { font-size: 13px; line-height: 1.6; color: #666; }
+    .band-table-wrap { margin-top: 12px; max-height: 240px; overflow-y: auto; border: 1px solid #eae9e5; border-radius: 6px; }
+    .band-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .band-table thead { position: sticky; top: 0; background: #f5f5f0; z-index: 1; }
+    .band-table th { text-align: left; padding: 8px 12px; font-weight: 600; color: #666; border-bottom: 2px solid #eae9e5; }
+    .band-table td { padding: 7px 12px; border-bottom: 1px solid #f2f1ed; color: #444; }
+    .band-table tbody tr:last-child td { border-bottom: none; }
+    .band-table tbody tr:hover { background: #fafaf7; }
+    .bonus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .bonus-item { background: #fafaf7; border: 1px solid #eae9e5; border-radius: 6px; padding: 12px; }
+    .bonus-name { font-size: 12px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+    .bonus-value { font-size: 13px; font-weight: 600; color: #c41230; margin-bottom: 2px; }
+    .bonus-cap { font-size: 11px; color: #999; }
+    .score-table { width: 100%; border-collapse: collapse; }
+    .score-table th { text-align: left; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: #aaa; padding: 7px 10px; border-bottom: 2px solid #eae9e5; }
+    .score-table td { padding: 13px 10px; font-size: 14px; border-bottom: 1px solid #f2f1ed; color: #444; }
+    .score-table tr:last-child td { border-bottom: none; }
+    .score-table .total-row td { border-top: 2px solid #1a1a1a; border-bottom: none; font-weight: 700; font-size: 15px; color: #1a1a1a; padding-top: 14px; }
+    .factor-name { font-weight: 600; color: #1a1a1a; }
+    .factor-desc { display: block; font-size: 11px; font-weight: 400; color: #aaa; margin-top: 1px; }
+    .grade-scale { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 18px; }
+    .g-chip { padding: 5px 11px; border-radius: 5px; font-size: 11px; font-weight: 600; color: #fff; }
+    .g-chip.current { outline: 3px solid #c41230; outline-offset: 2px; }
+    .ga { background: #2d8a4e; } .gam { background: #3a9d5e; } .gbp { background: #2563eb; } .gb { background: #3b7cf5; } .gbm { background: #5b93f7; }
+    .gcp { background: #b45309; } .gc { background: #ca6d1b; } .gcm { background: #d4872f; }
+    .gdp { background: #c2410c; } .gd { background: #d4580f; } .gdm { background: #e06d24; } .gf { background: #dc2626; }
+    .sim-box { background: #fafaf7; border: 1px solid #eae9e5; border-radius: 10px; padding: 28px; margin-top: 24px; }
+    .sim-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+    .sim-desc { font-size: 13px; color: #999; margin-bottom: 24px; }
+    .sim-slider-group { margin-bottom: 20px; }
+    .sim-slider-group:last-of-type { margin-bottom: 24px; }
+    .sim-slider-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+    .sim-slider-label { font-size: 13px; font-weight: 600; color: #444; }
+    .sim-slider-value { font-size: 14px; font-weight: 700; color: #c41230; min-width: 30px; text-align: right; }
+    .sim-slider { width: 100%; height: 6px; -webkit-appearance: none; appearance: none; background: #e0dfdb; border-radius: 3px; outline: none; cursor: pointer; }
+    .sim-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #c41230; cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+    .sim-slider::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: #c41230; cursor: pointer; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+    .sim-result { background: #fff; border: 1px solid #eae9e5; border-radius: 8px; padding: 20px; display: flex; align-items: center; gap: 24px; }
+    .sim-grade { font-size: 42px; font-weight: 700; line-height: 1; letter-spacing: -1px; min-width: 70px; text-align: center; }
+    .sim-details { flex: 1; }
+    .sim-score-line { font-size: 15px; font-weight: 600; color: #333; margin-bottom: 4px; }
+    .sim-breakdown { font-size: 12px; color: #999; }
+    .sim-change { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-left: 8px; }
+    .sim-change.up { background: #d1fae5; color: #065f46; } .sim-change.down { background: #fee2e2; color: #991b1b; } .sim-change.same { background: #f0efeb; color: #888; }
+    .cv-card { background: #fafaf7; border: 1px solid #eae9e5; border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
+    .cv-card:last-child { margin-bottom: 0; }
+    .cv-toggle { display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; cursor: pointer; user-select: none; transition: background 0.15s ease; }
+    .cv-toggle:hover { background: #f3f3ef; }
+    .cv-toggle-left { display: flex; align-items: baseline; gap: 12px; }
+    .cv-name { font-size: 16px; font-weight: 700; color: #1a1a1a; }
+    .cv-motto { font-size: 12px; color: #aaa; font-style: italic; }
+    .cv-arrow { font-size: 14px; color: #ccc; transition: transform 0.3s ease; flex-shrink: 0; }
+    .cv-card.open .cv-arrow { transform: rotate(180deg); }
+    .cv-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .cv-card.open .cv-body { max-height: 600px; }
+    .cv-body-inner { padding: 0 24px 24px; }
+    .cv-block { margin-bottom: 14px; } .cv-block:last-child { margin-bottom: 0; }
+    .cv-block-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
+    .cv-block-label.red { color: #c41230; } .cv-block-label.blue { color: #2563eb; } .cv-block-label.green { color: #2d8a4e; }
+    .cv-block p { font-size: 14px; color: #444; line-height: 1.7; }
+    .narrative p { font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 16px; }
+    .narrative p:last-child { margin-bottom: 0; }
+    .strength { padding: 13px 0; border-bottom: 1px solid #f2f1ed; display: flex; gap: 14px; align-items: flex-start; }
+    .strength:last-child { border-bottom: none; }
+    .strength-n { font-size: 12px; font-weight: 700; color: #c41230; min-width: 22px; padding-top: 1px; }
+    .strength-txt { font-size: 14px; color: #333; line-height: 1.65; }
+    .dev-card { background: #fafaf7; border: 1px solid #eae9e5; border-radius: 8px; padding: 22px 24px; margin-bottom: 12px; }
+    .dev-card:last-child { margin-bottom: 0; }
+    .dev-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; }
+    .dev-field { margin-bottom: 10px; } .dev-field:last-child { margin-bottom: 0; }
+    .dev-field-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #aaa; margin-bottom: 3px; }
+    .dev-field p { font-size: 13px; color: #444; line-height: 1.6; }
+    .c-green { color: #2d8a4e; } .c-blue { color: #2563eb; } .c-amber { color: #b45309; } .c-orange { color: #c2410c; } .c-red { color: #dc2626; }
+    .footer { padding: 22px 40px; background: #fafaf7; border-top: 1px solid #eae9e5; text-align: center; font-size: 11px; color: #ccc; }
+  </style>
+</head>
+<body>
+  <div class="report">
+    <div class="header">
+      <div class="header-inner">
+        <div class="header-row">
+          <div class="brand">Chick-fil-A &middot; Cape Coral</div>
+          <div class="period-badge">Sep 2025 — Feb 2026</div>
+        </div>
+        <h1>Team Member Evaluation</h1>
+        <div class="header-sub">Performance Report</div>
+      </div>
+    </div>
+
+    <div class="info-bar">
+      <div class="grade-box">
+        <div class="grade-letter c-blue">B+</div>
+        <div class="grade-num">87 / 100</div>
+        <div class="grade-tag">Overall</div>
+      </div>
+      <div class="info-details">
+        <div class="info-row">
+          <div class="info-item"><label>Team Member</label><span>Daniel Ortiz</span></div>
+          <div class="info-item"><label>Position</label><span>Team Member Level 1</span></div>
+          <div class="info-item"><label>Department</label><span>FOH</span></div>
+        </div>
+        <div class="info-row">
+          <div class="info-item"><label>Hire Date</label><span>August 8, 2025</span></div>
+          <div class="info-item"><label>Eval Period</label><span>6 months</span></div>
+          <div class="info-item"><label>Scoring Method</label><span>Band-Based</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section methodology">
+      <div class="section-label">How This Evaluation Works</div>
+      
+      <div class="method-intro">
+        <p>Your score comes from two things: how reliable you've been with following policies, and how engaged you've been with going above and beyond. We use something called "band-based scoring" instead of a strict formula, which basically means we group employees by their infraction patterns rather than treating every point the same way.</p>
+      </div>
+
+      <div class="method-grid">
+        <div class="method-card">
+          <div class="method-card-title">Step 1: Calculate Your PPM</div>
+          <div class="method-formula">PPM = Total Infraction Points ÷ Months Worked</div>
+          <p class="method-desc">PPM stands for Points Per Month. If you worked 6 months and got 60 infraction points total, your PPM is 10. This lets us compare people fairly even if they've been here different amounts of time.</p>
+        </div>
+
+        <div class="method-card">
+          <div class="method-card-title">Step 2: Find Your Base Score</div>
+          <p class="method-desc">Once we know your PPM, we use this table to find your base reliability score. Lower PPM = higher base score. This isn't a straight line—it's set up based on how the whole team actually performs.</p>
+          <div class="band-table-wrap">
+            <table class="band-table">
+              <thead>
+                <tr><th>If Your PPM Is...</th><th>Your Base Score Is...</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>0–10</td><td>85</td></tr>
+                <tr><td>10–25</td><td>83</td></tr>
+                <tr><td>25–50</td><td>81</td></tr>
+                <tr><td>50–75</td><td>80</td></tr>
+                <tr><td>75–100</td><td>79</td></tr>
+                <tr><td>100–125</td><td>78</td></tr>
+                <tr><td>125–150</td><td>75</td></tr>
+                <tr><td>150–200</td><td>72</td></tr>
+                <tr><td>200–300</td><td>65</td></tr>
+                <tr><td>300–400</td><td>58</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="method-card">
+          <div class="method-card-title">Step 3: Add Your Bonuses</div>
+          <div class="bonus-grid">
+            <div class="bonus-item">
+              <div class="bonus-name">Top Performance Awards</div>
+              <div class="bonus-value">+1.5 points each</div>
+              <div class="bonus-cap">Max: +10 points</div>
+            </div>
+            <div class="bonus-item">
+              <div class="bonus-name">Recognitions</div>
+              <div class="bonus-value">+1 point per 5 you get</div>
+              <div class="bonus-cap">Max: +5 points</div>
+            </div>
+          </div>
+          <p class="method-desc">These are bonuses for positive contributions. If you didn't get any Top Performance awards or recognitions, you just don't get bonus points—it doesn't hurt your score.</p>
+        </div>
+
+        <div class="method-card">
+          <div class="method-card-title">What "Band-Based" Means</div>
+          <p class="method-desc">Most team members have very low PPM (0-25 range). Instead of spreading scores evenly across all possibilities, the bands are designed so that small differences in low PPM don't matter as much. The system focuses on separating people who are doing great from people who need serious improvement.</p>
+          <p class="method-desc" style="margin-top: 10px;">Example: If you have 5 PPM or 10 PPM, you're both in the same band (85 base). But if you jump from 100 PPM to 150 PPM, that's a bigger drop (78 to 75) because it shows a pattern getting worse.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Score Breakdown</div>
+      <table class="score-table">
+        <thead><tr><th>Factor</th><th>Your Data</th><th>Points</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="factor-name">Base Reliability Score</span><span class="factor-desc">PPM: 115 (690 pts ÷ 6 months)</span></td>
+            <td>690 total points</td>
+            <td><strong>78</strong></td>
+          </tr>
+          <tr>
+            <td><span class="factor-name">Top Performance Bonus</span><span class="factor-desc">+1.5 per award (max +10)</span></td>
+            <td><strong>4</strong> awards</td>
+            <td><strong>+6</strong></td>
+          </tr>
+          <tr>
+            <td><span class="factor-name">Recognition Bonus</span><span class="factor-desc">+1 per 5 recognitions (max +5)</span></td>
+            <td><strong>15</strong> received</td>
+            <td><strong>+3</strong></td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2" style="text-align:right;">Final Score</td>
+            <td><strong>87</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="grade-scale">
+        <div class="g-chip ga">A  93-100</div>
+        <div class="g-chip gam">A&minus;  90-92</div>
+        <div class="g-chip gbp current">B+  87-89</div>
+        <div class="g-chip gb">B  83-86</div>
+        <div class="g-chip gbm">B&minus;  80-82</div>
+        <div class="g-chip gcp">C+  77-79</div>
+        <div class="g-chip gc">C  73-76</div>
+        <div class="g-chip gcm">C&minus;  70-72</div>
+        <div class="g-chip gdp">D+  67-69</div>
+        <div class="g-chip gd">D  63-66</div>
+        <div class="g-chip gdm">D&minus;  60-62</div>
+        <div class="g-chip gf">F  <60</div>
+      </div>
+
+      <div class="sim-box">
+        <div class="sim-title">What Would Move My Grade?</div>
+        <div class="sim-desc">Drag the sliders to see how next period's performance would change your score.</div>
+        <div class="sim-slider-group">
+          <div class="sim-slider-header"><span class="sim-slider-label">Points Per Month</span><span class="sim-slider-value" id="sim-ppm-val">115</span></div>
+          <input type="range" class="sim-slider" id="sim-ppm" min="0" max="200" value="115">
+        </div>
+        <div class="sim-slider-group">
+          <div class="sim-slider-header"><span class="sim-slider-label">Top Performance Awards</span><span class="sim-slider-value" id="sim-tp-val">4</span></div>
+          <input type="range" class="sim-slider" id="sim-tp" min="0" max="15" value="4">
+        </div>
+        <div class="sim-slider-group">
+          <div class="sim-slider-header"><span class="sim-slider-label">Recognitions Received</span><span class="sim-slider-value" id="sim-rec-val">15</span></div>
+          <input type="range" class="sim-slider" id="sim-rec" min="0" max="30" value="15">
+        </div>
+        <div class="sim-result">
+          <div class="sim-grade c-blue" id="sim-grade">B+</div>
+          <div class="sim-details">
+            <div class="sim-score-line"><span id="sim-score">87</span> / 100 <span class="sim-change same" id="sim-change">No change</span></div>
+            <div class="sim-breakdown" id="sim-breakdown">Base: 78 + TP: +6 + Rec: +3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Performance Summary</div>
+      <div class="narrative">
+        <p>Daniel has made an impressive start during his first six months at Chick-fil-A Cape Coral, showing both rapid learning and a willingness to take on new responsibilities in the Front of House. From his earliest weeks, Daniel caught the attention of leaders with his hard work, adaptability, and consistently positive attitude. He was frequently recognized for stepping up during transitions and tackling the cleaning list with enthusiasm, earning praise for making a tangible difference for the team and our guests. Multiple recognitions over several months highlight not only his skill on the register and cash, but also his growing strength at multitasking and guest interaction.</p>
+        <p>While Daniel shows tremendous promise, he's still working through some of the basics of reliability and operational discipline that are essential for building trust within the team. A major miscommunication about shift coverage early on points to areas where he still needs to build confidence around scheduling and process expectations. Similarly, minor missteps with time clock procedures and checklists indicate that attention to operational details remains a focus area. Overall, Daniel's trajectory is highly positive; as he puts these lessons into practice, he is on a solid path to become a cornerstone of the team.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Key Strengths</div>
+
+      <div class="strength">
+        <span class="strength-n">01</span>
+        <span class="strength-txt">Daniel is often singled out for his enthusiastic support during transitions, with leaders thanking him for 'always supporting us during transition!! lemonades and more.'</span>
+      </div>
+      <div class="strength">
+        <span class="strength-n">02</span>
+        <span class="strength-txt">He consistently goes above and beyond with cleanliness and task completion, earning specific praise in recognitions such as 'I appreciate you cleaning, taking care of our cleaning list!!!' and 'all your hard work especially with cleanliness.'</span>
+      </div>
+      <div class="strength">
+        <span class="strength-n">03</span>
+        <span class="strength-txt">His positive guest interactions have not gone unnoticed, with feedback like 'amazing positive feedback from our guests because of how well you treat our guests!' and trust placed in him when he's 'on register' as a 'humongous quality to have.'</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Areas for Development</div>
+
+      <div class="dev-card">
+        <div class="dev-title">Reliability and Shift Communication</div>
+        <div class="dev-field">
+          <div class="dev-field-label">What we're looking for</div>
+          <p>Team members are expected to communicate proactively and directly with leadership about any schedule conflicts, ensure shift coverage is arranged according to procedure, and maintain up-to-date availability.</p>
+        </div>
+        <div class="dev-field">
+          <div class="dev-field-label">Where the gap is</div>
+          <p>Daniel missed an assigned shift without ensuring coverage or communicating directly, believing that posting the shift was sufficient. His availability did not match his circumstances, leading to a reliability infraction despite some grace for being new.</p>
+        </div>
+        <div class="dev-field">
+          <div class="dev-field-label">What success looks like</div>
+          <p>Daniel will consistently keep his availability updated, be proactive in communicating any conflicts to leaders before they arise, and follow through on securing approved coverage. Over time, this will help build trust and ensure smooth scheduling for the entire team.</p>
+        </div>
+      </div>
+
+      <div class="dev-card">
+        <div class="dev-title">Operational Excellence and Attention to Detail</div>
+        <div class="dev-field">
+          <div class="dev-field-label">What we're looking for</div>
+          <p>A high standard of excellence is maintained through consistent completion of all checklists and accurate time-tracking for every shift.</p>
+        </div>
+        <div class="dev-field">
+          <div class="dev-field-label">Where the gap is</div>
+          <p>There were instances where Daniel forgot to clock out and twice missed completing required VSBL checklists, which shows a developing but inconsistent operational routine.</p>
+        </div>
+        <div class="dev-field">
+          <div class="dev-field-label">What success looks like</div>
+          <p>Daniel will make checklist completion and accurate clock-in/clock-out habits a non-negotiable part of his routine. He will double-check his operational steps before ending each shift and confirm all required tasks have been completed, bringing him fully up to speed in FOH standards.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Core Values Assessment</div>
+
+      <div class="cv-card">
+        <div class="cv-toggle" onclick="toggleCV(this)">
+          <div class="cv-toggle-left">
+            <span class="cv-name">Fun</span>
+            <span class="cv-motto">We Love What We Do</span>
+          </div>
+          <span class="cv-arrow">&#9660;</span>
+        </div>
+        <div class="cv-body">
+          <div class="cv-body-inner">
+            <div class="cv-block">
+              <div class="cv-block-label red">Observable Behavior</div>
+              <p>Daniel brings high energy and positivity to every shift. Guest compliments and peer feedback regularly mention his upbeat presence and the joy he brings to the front counter.</p>
+            </div>
+            <div class="cv-block">
+              <div class="cv-block-label blue">Why This Assessment</div>
+              <p>There have been no infractions tied to Fun, which is supported further by specific recognition about his great attitude and the enjoyment he brings to both guests and team members.</p>
+            </div>
+            <div class="cv-block">
+              <div class="cv-block-label green">Path to Excellence</div>
+              <p>Continue to engage teammates with humor and energy, and look for opportunities to lead small celebrations or friendly competitions during slower moments to spread positivity even further.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-card">
+        <div class="cv-toggle" onclick="toggleCV(this)">
+          <div class="cv-toggle-left">
+            <span class="cv-name">Unity</span>
+            <span class="cv-motto">We Win Together, Not Alone</span>
+          </div>
+          <span class="cv-arrow">&#9660;</span>
+        </div>
+        <div class="cv-body">
+          <div class="cv-body-inner">
+            <div class="cv-block">
+              <div class="cv-block-label red">Observable Behavior</div>
+              <p>Daniel is regularly recognized for supporting the team during transitions, stepping in wherever needed, and checking in to help others finish tasks. His willingness to look around and offer help has been specifically mentioned in recognitions.</p>
+            </div>
+            <div class="cv-block">
+              <div class="cv-block-label blue">Why This Assessment</div>
+              <p>He has exhibited strong unity consistently, with no unity-related infractions and repeated, genuine thanks from team leaders for his teamwork.</p>
+            </div>
+            <div class="cv-block">
+              <div class="cv-block-label green">Path to Excellence</div>
+              <p>Continue seeking ways to include newer team members in group tasks and help coach others on how to support each other during busy periods, further strengthening team cohesion.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-card">
+        <div class="cv-toggle" onclick="toggleCV(this)">
+          <div class="cv-toggle-left">
+            <span class="cv-name">Servant Heart</span>
+            <span class="cv-motto">Always Aware, Ready to Care</span>
+          </div>
+          <span class="cv-arrow">&#9660;</span>
+        </div>
+        <div class="cv-body">
+          <div class="cv-body-inner">
+            <div class="cv-block">
+              <div class="cv-block-label red">Observable Behavior</div>
+              <p>Daniel has repeatedly volunteered for less glamorous duties like finishing the cleaning list and ensuring the team is taken care of during busy stretches. Leaders appreciate his readiness to serve the team's practical needs.</p>
+            </div>
+            <div class="cv-block">
+              <div class="cv-block-label blue">Why This Assessment</div>
+              <p>Zero servant heart infractions and multiple comments acknowledging his willingness to serve the team demonstrate Daniel's commitment in this area.</p>
+            </div>
+            <div class="cv-block">
+              <div class="cv-block-label green">Path to Excellence</div>
+              <p>Look for opportunities to anticipate guest and team needs even before they are voiced, and mentor others in building a servant-first mindset through daily actions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-card">
+        <div class="cv-toggle" onclick="toggleCV(this)">
+          <div class="cv-toggle-left">
+            <span class="cv-name">Excellence</span>
+            <span class="cv-motto">We Give Our Best</span>
+          </div>
+          <span class="cv-arrow">&#9660;</span>
+        </div>
+        <div class="cv-body">
+          <div class="cv-body-inner">
+            <div class="cv-block">
+              <div class="cv-block-label red">Observable Behavior</div>
+              <p>Daniel has been praised for his attention to cleaning and for stepping up in multiple FOH responsibilities, but there were oversights in time punch accuracy and two missed checklist completions.</p>
+            </div>
+            <div class="cv-block">
+              <div class="cv-block-label blue">Why This Assessment</div>
+              <p>Recognition descriptions reflect consistent excellence in service and cleaning, but the infraction log shows there are still moments where operational standards are not met perfectly.</p>
+            </div>
+            <div class="cv-block">
+              <div class="cv-block-label green">Path to Excellence</div>
+              <p>Make operational checklists and time protocols a daily routine, creating personal reminders or checklists to ensure nothing is missed at the end of a shift. This level of diligence will reinforce his reputation for excellence.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-card">
+        <div class="cv-toggle" onclick="toggleCV(this)">
+          <div class="cv-toggle-left">
+            <span class="cv-name">Teachability</span>
+            <span class="cv-motto">The Desire to Learn & the Willingness to Change</span>
+          </div>
+          <span class="cv-arrow">&#9660;</span>
+        </div>
+        <div class="cv-body">
+          <div class="cv-body-inner">
+            <div class="cv-block">
+              <div class="cv-block-label red">Observable Behavior</div>
+              <p>Daniel's progress over six months is visible in how he's taken feedback about bagging and register work and made notable improvements, as described in recognitions about becoming a 'Cash King' and building strength in multitasking.</p>
+            </div>
+            <div class="cv-block">
+              <div class="cv-block-label blue">Why This Assessment</div>
+              <p>No teachability infractions and clear evidence of skill growth and openness to feedback from multiple leaders support a positive assessment.</p>
+            </div>
+            <div class="cv-block">
+              <div class="cv-block-label green">Path to Excellence</div>
+              <p>Continue to actively seek feedback after each shift and request tips or corrections from senior team members. Sharing what he's learned with others will further prove his teachability and help him reinforce new skills.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-card">
+        <div class="cv-toggle" onclick="toggleCV(this)">
+          <div class="cv-toggle-left">
+            <span class="cv-name">Reliability</span>
+            <span class="cv-motto">Showing Up & Following Through</span>
+          </div>
+          <span class="cv-arrow">&#9660;</span>
+        </div>
+        <div class="cv-body">
+          <div class="cv-body-inner">
+            <div class="cv-block">
+              <div class="cv-block-label red">Observable Behavior</div>
+              <p>Daniel had one critical instance of missed shift coverage due to misunderstanding the communication process, but has otherwise shown up and been recognized for his reliability at the register and in assigned positions.</p>
+            </div>
+            <div class="cv-block">
+              <div class="cv-block-label blue">Why This Assessment</div>
+              <p>The single, significant infraction points to a gap in process understanding, but this occurred early in his tenure and was partly a new-hire learning curve. Since then, no patterns of unreliability are present.</p>
+            </div>
+            <div class="cv-block">
+              <div class="cv-block-label green">Path to Excellence</div>
+              <p>Maintain open calendar communication with the leadership team, periodically review availability in the scheduling system, and confirm all shift swaps directly with a leader so this issue does not recur. Developing this habit will close the reliability gap and solidify trust.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">Chick-fil-A Cape Coral &middot; Team Member Evaluation System v3.0</div>
+  </div>
+
+  <script>
+    function toggleCV(t) { var c = t.parentElement; c.classList.contains('open') ? c.classList.remove('open') : c.classList.add('open'); }
+    
+    // Band lookup function
+    const bands = [{"max":10,"base":85},{"max":25,"base":83},{"max":50,"base":81},{"max":75,"base":80},{"max":100,"base":79},{"max":125,"base":78},{"max":150,"base":75},{"max":200,"base":72},{"max":300,"base":65},{"max":400,"base":58},{"max":600,"base":50},{"max":800,"base":45},{"max":1000,"base":40},{"max":null,"base":35}];
+    function getBaseFromPPM(ppm) {
+      for (let i = 0; i < bands.length; i++) {
+        if (ppm <= bands[i].max) return bands[i].base;
+      }
+      return 35;
+    }
+    
+    var CS = 87;
+    var pS = document.getElementById('sim-ppm'), tS = document.getElementById('sim-tp'), rS = document.getElementById('sim-rec');
+    var pV = document.getElementById('sim-ppm-val'), tV = document.getElementById('sim-tp-val'), rV = document.getElementById('sim-rec-val');
+    var sG = document.getElementById('sim-grade'), sS = document.getElementById('sim-score'), sC = document.getElementById('sim-change'), sB = document.getElementById('sim-breakdown');
+    
+    function calc() {
+      var p = parseInt(pS.value), t = parseInt(tS.value), r = parseInt(rS.value);
+      pV.textContent = p; tV.textContent = t; rV.textContent = r;
+      
+      var base = getBaseFromPPM(p);
+      var tpBonus = Math.min(10, t * 1.5);
+      var recBonus = Math.min(5, (r / 5) * 1);
+      var tot = Math.round((base + tpBonus + recBonus) * 10) / 10;
+      
+      var g = '', cc = '';
+      if (tot >= 93) { g = 'A'; cc = 'c-green'; } else if (tot >= 90) { g = 'A\u2212'; cc = 'c-green'; }
+      else if (tot >= 87) { g = 'B+'; cc = 'c-blue'; } else if (tot >= 83) { g = 'B'; cc = 'c-blue'; } else if (tot >= 80) { g = 'B\u2212'; cc = 'c-blue'; }
+      else if (tot >= 77) { g = 'C+'; cc = 'c-amber'; } else if (tot >= 73) { g = 'C'; cc = 'c-amber'; } else if (tot >= 70) { g = 'C\u2212'; cc = 'c-amber'; }
+      else if (tot >= 67) { g = 'D+'; cc = 'c-orange'; } else if (tot >= 63) { g = 'D'; cc = 'c-orange'; } else if (tot >= 60) { g = 'D\u2212'; cc = 'c-orange'; }
+      else { g = 'F'; cc = 'c-red'; }
+      
+      sG.textContent = g; sG.className = 'sim-grade ' + cc; sS.textContent = tot;
+      sB.textContent = 'Base: ' + base + ' + TP: +' + tpBonus.toFixed(1) + ' + Rec: +' + recBonus.toFixed(1);
+      
+      var d = Math.round((tot - CS) * 10) / 10;
+      if (d > 0) { sC.textContent = '+' + d; sC.className = 'sim-change up'; }
+      else if (d < 0) { sC.textContent = '' + d; sC.className = 'sim-change down'; }
+      else { sC.textContent = 'No change'; sC.className = 'sim-change same'; }
+    }
+    pS.addEventListener('input', calc); tS.addEventListener('input', calc); rS.addEventListener('input', calc);
+  </script>
+</body>
+</html>
